@@ -2,7 +2,7 @@ import React, { useEffect, useState, useImperativeHandle, forwardRef, Ref } from
 import { SortableContainer, SortableElement } from "react-sortable-hoc";
 import { arrayMove  } from './utils'
 import dragPng from './icon/drag.png'
-import styles from './drag.less'
+import './style.less'
 
 interface Onchange {
   (oldIndex?: number, newIndex?: number): any;
@@ -24,7 +24,7 @@ const FrankDrag = (Props: Props, parentRef: Ref<null> | null) => {
     childrens = [],
     onChange = (oldIndex?: number, newIndex?: number) => null,
     dragType = dragTypeEmum[2],
-    fixIcon = <img className={styles.icon} src={dragPng}></img>,
+    fixIcon = <img className={'icon'} src={dragPng}></img>,
     DragItemClass = '',
     ItemClass = ''
   } = Props
@@ -43,12 +43,12 @@ const FrankDrag = (Props: Props, parentRef: Ref<null> | null) => {
   const SortableItem = SortableElement((element:any) => {
     
     return (
-      <div id='TX_dragItems' className={`${styles.dragItems} ${DragItemClass}`}>
-        {dragType === 'prefix' && <div className={styles.div_Preicon} id='TX_icon'>{fixIcon}</div>}
-        <div key='item' className={`${styles.dragItem} ${ItemClass}`}>
+      <div id='TX_dragItems' className={`dragItems ${DragItemClass}`}>
+        {dragType === 'prefix' && <div className={'div_Preicon'} id='TX_icon'>{fixIcon}</div>}
+        <div key='item' className={`${'dragItem'} ${ItemClass}`}>
           {element.value}
         </div>
-        {dragType === 'suffix' && <div className={styles.div_Suficon} id='TX_icon'>{fixIcon}</div>}
+        {dragType === 'suffix' && <div className={'div_Suficon'} id='TX_icon'>{fixIcon}</div>}
       </div>
     )
   });
@@ -87,8 +87,6 @@ const FrankDrag = (Props: Props, parentRef: Ref<null> | null) => {
   }, [])
 
   return (
-    // <img className={styles.icon} src={dragPng}></img>
-    // <div className={styles.dragItems}>323232</div>
     <SortableList shouldCancelStart={shouldCancelStart} onSortEnd={onSortEnd}>
       
       {

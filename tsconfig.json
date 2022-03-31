@@ -32,7 +32,7 @@
     "allowSyntheticDefaultImports": true,
     "typeRoots": ["typings", "node_modules/@types"]
   },
-  "include": ["src/**/*", "dosc/**/*", "public/path", "public/to"],
+  "include": [ "src"],
   "exclude": [
     "node_modules",
     "lib",
