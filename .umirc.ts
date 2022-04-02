@@ -12,6 +12,5 @@ export default defineConfig({
   hash:true,
   history:{ type: 'hash' },
   publicPath:'./',
-  webpack5: {},
   // more config: https://d.umijs.org/config
 });

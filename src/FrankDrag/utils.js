@@ -21,8 +21,16 @@ const arrayMove = (items, oldIndex, newIndex) => {
   const temp = items[oldIndex]
   const tempList = [...items]
   tempList.splice(oldIndex, 1)
-  tempList.splice(newIndex, 0,temp)
+  tempList.splice(newIndex, 0, temp)
   return tempList
 }
 
-export { deepCopy,arrayMove }
+const isPathHave = (paths, id) => {
+  for (let i = 0; i < paths?.length; i++) {
+    const tempPath = paths[i]
+    if (tempPath.id === id) return true
+  }
+  return false
+}
+
+export { deepCopy, arrayMove, isPathHave }

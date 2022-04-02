@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useImperativeHandle, forwardRef, Ref } from 'react';
 import { SortableContainer, SortableElement } from "react-sortable-hoc";
-import { arrayMove  } from './utils'
+import { arrayMove , isPathHave} from './utils'
 import dragPng from './icon/drag.png'
 import './style.less'
 
@@ -43,9 +43,9 @@ const FrankDrag = (Props: Props, parentRef: Ref<null> | null) => {
   const SortableItem = SortableElement((element:any) => {
     
     return (
-      <div id='TX_dragItems' className={`dragItems ${DragItemClass}`}>
+      <div className={`dragItems ${DragItemClass}`}>
         {dragType === 'prefix' && <div className={'div_Preicon'} id='TX_icon'>{fixIcon}</div>}
-        <div key='item' className={`${'dragItem'} ${ItemClass}`}>
+        <div id='TX_dragItem' key='item' className={`dragItem ${ItemClass}`}>
           {element.value}
         </div>
         {dragType === 'suffix' && <div className={'div_Suficon'} id='TX_icon'>{fixIcon}</div>}
@@ -78,8 +78,8 @@ const FrankDrag = (Props: Props, parentRef: Ref<null> | null) => {
 
   const shouldCancelStart = (SortEvent:any) => {
     if (dragType === 'line') return false
-    if (dragType === 'outside') return SortEvent?.path[0]?.id !== 'TX_dragItems'
-    return SortEvent?.path[1]?.id !== 'TX_icon'
+    if (dragType === 'outside') return isPathHave(SortEvent.path||[],'TX_dragItem')
+    return  !isPathHave(SortEvent.path||[],'TX_icon')
   }
 
   useEffect(() => {
@@ -88,7 +88,6 @@ const FrankDrag = (Props: Props, parentRef: Ref<null> | null) => {
 
   return (
     <SortableList shouldCancelStart={shouldCancelStart} onSortEnd={onSortEnd}>
-      
       {
         list.map((element, index) => (
           <SortableItem type={dragType} key={`TX_Drag-${index}`} index={index} value={element} />))
