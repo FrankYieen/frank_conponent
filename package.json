@@ -1,14 +1,15 @@
 {
   "private": false,
   "name": "frank_component",
-  "version": "1.1.3",
+  "version": "1.1.6",
   "description": "A drag list component",
   "author": "yieenfrank",
   "license": "MIT",
   "keywords": [
     "React",
     "Component",
-    "drag"
+    "drag",
+    "valid"
   ],
   "homepage": "http://124.223.119.52:3000/#/",
   "repository": {
